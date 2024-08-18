@@ -122,7 +122,8 @@
                     </div>
                     <div class="list-group list-group-flush">
                         <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Dashboard</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Manage Users</a>
+                        <a href="{{ route('departements.index') }}"
+                            class="list-group-item list-group-item-action bg-dark text-white">Jurusan</a>
                         <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Settings</a>
                     </div>
                 </div>
