@@ -128,6 +128,8 @@
                             class="list-group-item list-group-item-action bg-dark text-white">Mahasiswa</a>
                         <a href="{{ route('majors.index') }}"
                             class="list-group-item list-group-item-action bg-dark text-white">Major</a>
+                        <a href="{{ route('assignments.index') }}"
+                            class="list-group-item list-group-item-action bg-dark text-white">Assignment</a>   
                             
                     </div>
                 </div>
