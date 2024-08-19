@@ -33,7 +33,7 @@
                         @foreach ($mahasiswas as $mahasiswa)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>    
+                                <td>
                                     <img src="{{ asset('storage/' . $mahasiswa->photo) }}" alt="{{ $mahasiswa->name }}"
                                         width="50">
                                 </td>
@@ -89,12 +89,14 @@
                                                 <div class="form-group">
                                                     <label for="departement_id">Jurusan</label>
                                                     <select name="departement_id" class="form-control">
-                                                        @foreach ($departements as $departement)
+                                                        @forelse ($departements as $departement)
                                                             <option value="{{ $departement->id }}"
                                                                 {{ $mahasiswa->departement_id == $departement->id ? 'selected' : '' }}>
                                                                 {{ $departement->name }}
                                                             </option>
-                                                        @endforeach
+                                                        @empty
+                                                            <option value="">Jurusan Tidak Ditemukan</option>
+                                                        @endforelse
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
@@ -188,10 +190,12 @@
                         <div class="form-group">
                             <label for="departement_id">Jurusan</label>
                             <select name="departement_id" class="form-control">
-                                @foreach ($departements as $departement)
+                                @forelse ($departements as $departement)
                                     <option value="{{ $departement->id }}">
                                         {{ $departement->code }}-{{ $departement->name }}</option>
-                                @endforeach
+                                @empty
+                                    <option value="">Jurusan Tidak Ditemukan</option>
+                                @endforelse
                             </select>
                         </div>
                         <div class="form-group">
