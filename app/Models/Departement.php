@@ -14,4 +14,8 @@ class Departement extends Model
     public function mahasiswas(){
         return $this->hasMany(Mahasiswa::class);
     }
+
+    public function majors(){
+        return $this->hasMany(Major::class);
+    }
 }

@@ -126,6 +126,9 @@
                             class="list-group-item list-group-item-action bg-dark text-white">Jurusan</a>
                         <a href="{{ route('mahasiswas.index') }}"
                             class="list-group-item list-group-item-action bg-dark text-white">Mahasiswa</a>
+                        <a href="{{ route('majors.index') }}"
+                            class="list-group-item list-group-item-action bg-dark text-white">Major</a>
+                            
                     </div>
                 </div>
 
