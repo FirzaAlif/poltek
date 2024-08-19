@@ -124,7 +124,8 @@
                         <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Dashboard</a>
                         <a href="{{ route('departements.index') }}"
                             class="list-group-item list-group-item-action bg-dark text-white">Jurusan</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Settings</a>
+                        <a href="{{ route('mahasiswas.index') }}"
+                            class="list-group-item list-group-item-action bg-dark text-white">Mahasiswa</a>
                     </div>
                 </div>
 
