@@ -14,4 +14,8 @@ class Mahasiswa extends Model
     public function departements(){
         return $this->belongsTo(Departement::class, 'departement_id');
     }
+
+    public function assignments(){
+        return $this->belongsTo(Assignment::class, 'assignment_id');
+    }
 }
