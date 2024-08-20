@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Politeknik Negeri Malang') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -77,7 +77,7 @@
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Politeknik Negeri Malang') }}
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -118,7 +118,7 @@
             <div id="wrapper">
                 <div id="sidebar-wrapper">
                     <div class="sidebar-heading text-white py-4 px-3">
-                        <h3>{{ config('app.name', 'Laravel') }}</h3>
+                        <h3 style = font:bold>{{ config('app.name', 'Politeknik Negeri Malang') }}</h3>
                     </div>
                     <div class="list-group list-group-flush">
                         <a href="#" 
