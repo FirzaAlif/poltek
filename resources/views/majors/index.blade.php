@@ -1,16 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-
-<div class="container">
+    <div class="container">
         <div class="row mb-3">
             <div class="col-lg-12">
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Data Prodi</h2>
                     <!-- Tombol Tambah Prodi -->
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createMajorModal">
-                        Tambah Prodi
-                    </button>
+                    @hasrole('super_admin')
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createMajorModal">
+                            Tambah Prodi
+                        </button>
+                    @endhasrole
                 </div>
             </div>
         </div>
@@ -28,12 +29,11 @@
                     </thead>
                     <tbody>
                         @foreach ($majors as $major)
-
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $major->name }}</td>
-                                <td>{{ $major->departements->name}}</td>
-                                
+                                <td>{{ $major->departements->name }}</td>
+
                                 <td>
                                     <!-- Tombol Edit -->
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
@@ -50,13 +50,13 @@
                             </tr>
 
                             <!-- Modal Edit Prodi -->
-                            <div class="modal fade" id="editMajorModal-{{ $major->id }}" tabindex="-1"
-                                role="dialog" aria-labelledby="editMajorModalLabel-{{ $major->id }}"
-                                aria-hidden="true">
+                            <div class="modal fade" id="editMajorModal-{{ $major->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="editMajorModalLabel-{{ $major->id }}" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="editMajorModalLabel-{{ $major->id }}">Edit Prodi</h5>
+                                            <h5 class="modal-title" id="editMajorModalLabel-{{ $major->id }}">Edit Prodi
+                                            </h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -93,16 +93,14 @@
                             </div>
 
                             <!-- Modal Hapus Prodi -->
-                            <div class="modal fade" id="deleteMajorModal-{{ $major->id }}" tabindex="-1"
-                                role="dialog" aria-labelledby="deleteMajorModalLabel-{{ $major->id }}"
-                                aria-hidden="true">
+                            <div class="modal fade" id="deleteMajorModal-{{ $major->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="deleteMajorModalLabel-{{ $major->id }}" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="deleteMajorModalLabel-{{ $major->id }}">
                                                 Hapus Prodi</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -131,8 +129,8 @@
     </div>
 
     <!-- Modal Tambah Prodi -->
-    <div class="modal fade" id="createMajorModal" tabindex="-1" role="dialog"
-        aria-labelledby="createMajorModalLabel" aria-hidden="true">
+    <div class="modal fade" id="createMajorModal" tabindex="-1" role="dialog" aria-labelledby="createMajorModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
