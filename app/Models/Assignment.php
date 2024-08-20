@@ -14,4 +14,8 @@ class Assignment extends Model
     public function mahasiswas(){
         return $this->hasMany(Mahasiswa::class);
     }
+
+    public function tasktransactions(){
+        return $this->hasMany(Tasktransaction::class);
+    }
 }
