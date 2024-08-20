@@ -121,17 +121,18 @@
                         <h3>{{ config('app.name', 'Laravel') }}</h3>
                     </div>
                     <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">Dashboard</a>
+                        <a href="#" 
+                            class="list-group-item list-group-item-action bg-dark text-white">Dashboard</a>
                         <a href="{{ route('departements.index') }}"
                             class="list-group-item list-group-item-action bg-dark text-white">Jurusan</a>
                         <a href="{{ route('mahasiswas.index') }}"
                             class="list-group-item list-group-item-action bg-dark text-white">Mahasiswa</a>
                         <a href="{{ route('majors.index') }}"
-                            class="list-group-item list-group-item-action bg-dark text-white">Major</a>
+                            class="list-group-item list-group-item-action bg-dark text-white">Prodi</a>
                         <a href="{{ route('assignments.index') }}"
-                            class="list-group-item list-group-item-action bg-dark text-white">Assignment</a> 
+                            class="list-group-item list-group-item-action bg-dark text-white">Tugas</a> 
                         <a href="{{ route('tasktransactions.index') }}"
-                            class="list-group-item list-group-item-action bg-dark text-white">Tasktransaction</a>  
+                            class="list-group-item list-group-item-action bg-dark text-white">Transaksi Tugas</a>  
                             
                     </div>
                 </div>

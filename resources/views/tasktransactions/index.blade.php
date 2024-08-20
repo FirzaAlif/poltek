@@ -5,7 +5,7 @@
     <div class="row mb-3">
         <div class="col-lg-12">
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Task Transactions</h2>
+                <h2>Transaksi Tugas</h2>
                 <!-- Button to trigger the Add Task Transaction modal -->
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createTaskTransactionModal">
                     Add Task Transaction
