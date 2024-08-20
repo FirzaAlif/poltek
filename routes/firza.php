@@ -10,7 +10,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('mahasiswas', MahasiswaController::class);
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role|super_admin|admin'])->group(function () {
     Route::resource('majors', MajorController::class);
 });
 

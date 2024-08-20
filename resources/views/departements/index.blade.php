@@ -24,7 +24,9 @@
                             <th>No</th>
                             <th>Kode</th>
                             <th>Nama</th>
+                            @hasrole('super_admin')
                             <th width="280px">Aksi</th>
+                            @endhasrole
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +35,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $departement->code }}</td>
                                 <td>{{ $departement->name }}</td>
+                                @hasrole('super_admin')
                                 <td>
                                     <!-- Tombol Edit -->
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
@@ -46,6 +49,7 @@
                                         Hapus
                                     </button>
                                 </td>
+                                @endhasrole
                             </tr>
 
                             <!-- Modal Edit Jurusan -->

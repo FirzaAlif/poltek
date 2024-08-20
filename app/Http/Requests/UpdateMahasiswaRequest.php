@@ -31,7 +31,7 @@ class UpdateMahasiswaRequest extends FormRequest
             ],
             'name' => ['required', 'string', 'max:255'],
             'departement_id' => ['required', Rule::exists('departements', 'id')],
-            'phone' => ['required', 'digits_between:10,15'],
+            'phone' => ['required'],
             'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'email' => [
                 'required',
