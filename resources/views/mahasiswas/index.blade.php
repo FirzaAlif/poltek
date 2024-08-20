@@ -7,9 +7,11 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Data Mahasiswa</h2>
                     <!-- Tombol Tambah Mahasiswa -->
+                     @hasrole('super_admin|admin')
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createMahasiswaModal">
                         Tambah Mahasiswa
                     </button>
+                    @endhasrole
                 </div>
             </div>
         </div>

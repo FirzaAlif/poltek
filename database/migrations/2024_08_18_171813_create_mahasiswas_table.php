@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nim');
             $table->string('name');
             $table->foreignId('departement_id');
-            $table->integer('phone');
+            $table->string('phone');
             $table->string('photo');
             $table->string('email');
             $table->timestamps();

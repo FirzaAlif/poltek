@@ -7,9 +7,11 @@
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Transaksi Tugas</h2>
                 <!-- Button to trigger the Add Task Transaction modal -->
+                 @hasrole('super_admin|admin')
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createTaskTransactionModal">
                     Add Task Transaction
                 </button>
+                @endhasrole
             </div>
         </div>
     </div>
@@ -48,6 +50,7 @@
                             </span>
                         </td>
                         <td>
+                            @hasrole('super_admin|admin')
                             <!-- Edit Button -->
                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editTaskTransactionModal-{{ $tasktransaction->id }}">
                                 Edit
@@ -57,6 +60,7 @@
                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteTaskTransactionModal-{{ $tasktransaction->id }}">
                                 Delete
                             </button>
+                            @endhasrole
                         </td>
                     </tr>
 
