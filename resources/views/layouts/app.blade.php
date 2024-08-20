@@ -129,7 +129,9 @@
                         <a href="{{ route('majors.index') }}"
                             class="list-group-item list-group-item-action bg-dark text-white">Major</a>
                         <a href="{{ route('assignments.index') }}"
-                            class="list-group-item list-group-item-action bg-dark text-white">Assignment</a>   
+                            class="list-group-item list-group-item-action bg-dark text-white">Assignment</a> 
+                        <a href="{{ route('tasktransactions.index') }}"
+                            class="list-group-item list-group-item-action bg-dark text-white">Tasktransaction</a>  
                             
                     </div>
                 </div>
