@@ -45,8 +45,10 @@
                                 <!-- Asumsikan relasi Eloquent sudah diatur -->
                                 <td>{{ $mahasiswa->phone }}</td>
                                 <td>{{ $mahasiswa->email }}</td>
+                                @hasrole('super_admin|admin')
                                 <td>
                                     <!-- Tombol Edit -->
+
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
                                         data-target="#editMahasiswaModal-{{ $mahasiswa->id }}">
                                         Edit
@@ -58,6 +60,7 @@
                                         Hapus
                                     </button>
                                 </td>
+                                @endhasrole
                             </tr>
 
                             <!-- Modal Edit Mahasiswa -->
