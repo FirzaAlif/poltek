@@ -125,9 +125,10 @@
                             class="list-group-item list-group-item-action bg-dark text-white">Dashboard</a>
                         <a href="{{ route('departements.index') }}"
                             class="list-group-item list-group-item-action bg-dark text-white">Jurusan</a>
+                            @hasrole('super_admin|admin')
                         <a href="{{ route('mahasiswas.index') }}"
                             class="list-group-item list-group-item-action bg-dark text-white">Mahasiswa</a>
-                            @hasrole('super_admin|admin')
+                    
                         <a href="{{ route('majors.index') }}"
                             class="list-group-item list-group-item-action bg-dark text-white">Prodi</a>
                             @endhasrole
