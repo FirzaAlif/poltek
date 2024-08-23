@@ -72,46 +72,51 @@
 
 <body>
     <div id="app">
-        @guest
-            <!-- Navbar untuk pengguna yang belum login -->
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Politeknik Negeri Malang') }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+    @guest
+    <!-- Navbar untuk pengguna yang belum login -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand text-white" href="{{ url('/') }}">
+                {{ config('app.name', 'Politeknik Negeri Malang') }}
+            </a>
+            
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav me-auto"></ul>
+            <!-- Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav me-auto"></ul>
 
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ms-auto">
-                            <!-- Authentication Links -->
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ms-auto">
+                    <!-- Authentication Links -->
+                    @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                    @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-            <main class="py-4">
-                @yield('content')
-            </main>
-        @endguest
+    <!-- Main Content -->
+    <main class="py-4">
+        @yield('content')
+    </main>
+@endguest
+
 
         @auth
             <!-- Sidebar untuk pengguna yang sudah login -->
