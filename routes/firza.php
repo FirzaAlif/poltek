@@ -3,6 +3,7 @@
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MajorController;
+use App\Http\Controllers\PresensiController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,4 +18,6 @@ Route::middleware(['auth', 'role:super_admin|admin'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('assignments', AssignmentController::class);
 });
+
+Route::get('/presensi', [PresensiController::class, 'fetchPresensi']);
 ?>
