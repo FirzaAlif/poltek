@@ -126,7 +126,7 @@
                         <h3 style = font:bold>{{ config('app.name', 'Politeknik Negeri Malang') }}</h3>
                     </div>
                     <div class="list-group list-group-flush">
-                        <a href="#" 
+                        <a href="{{ route('home') }}" 
                             class="list-group-item list-group-item-action bg-dark text-white">Dashboard</a>
                         <a href="{{ route('departements.index') }}"
                             class="list-group-item list-group-item-action bg-dark text-white">Jurusan</a>
