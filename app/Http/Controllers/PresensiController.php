@@ -33,14 +33,23 @@ class PresensiController extends Controller
             $json = json_encode($xml);
             $data = json_decode($json, true);
 
-            // Mengirim data ke view Blade
-            return view('your_view', [
-                'presensi' => [
-                    'data' => $data, // Pastikan $dataArray adalah array
-                ]
-            ]);
-            
+            // Debugging data yang diterima
+            dd($data); // Ini akan menghentikan eksekusi dan menampilkan data
 
+            // Pastikan data terstruktur dengan benar
+            if (isset($data['record'])) {
+                $presensiData = is_array($data['record']) ? $data['record'] : [$data['record']];
+
+                // Kirim data ke view Blade
+                return view('presensi.index', [
+                    'presensi' => [
+                        'data' => $presensiData, // Pastikan data diubah menjadi array
+                    ]
+                ]);
+            } else {
+                // Jika tidak ada data, tampilkan pesan kesalahan
+                return view('presensi.index', ['presensi' => ['data' => []]]);
+            }
         } catch (\Exception $e) {
             // Menangani error jika terjadi
             return view('presensi.index', ['error' => $e->getMessage()]);
