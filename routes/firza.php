@@ -19,5 +19,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('assignments', AssignmentController::class);
 });
 
-Route::get('/presensi', [PresensiController::class, 'fetchPresensi']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/presensi', [PresensiController::class, 'index'])->name('presensi.index');
+    Route::post('/presensi/fetch', [PresensiController::class, 'fetchPresensi'])->name('presensi.fetch');
+    Route::post('/presensi/store', [PresensiController::class, 'store'])->name('presensi.store');
+});
+
+
+
 ?>

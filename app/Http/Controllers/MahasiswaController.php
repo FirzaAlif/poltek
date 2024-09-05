@@ -35,7 +35,6 @@ class MahasiswaController extends Controller
     {
         // Menyimpan file foto dan mendapatkan path-nya
         $imagePath = $request->photo->store('photos', 'public');
-
         // Membuat data Mahasiswa baru
         Mahasiswa::create([
             'nim' => $request->nim,

@@ -18,4 +18,8 @@ class Mahasiswa extends Model
     public function assignments(){
         return $this->belongsTo(Assignment::class, 'assignment_id');
     }
+
+    public function presensis(){
+        return $this->hasOne(Mahasiswa::class);
+    }
 }
