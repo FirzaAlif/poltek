@@ -23,7 +23,7 @@
                                     <td>Semester {{ $i }}</td>
                                     <td>
                                         <!-- Generate the URL dynamically for each semester -->
-                                        <a href="{{ url('https://tugasakhir:p0l1nema@api.polinema.ac.id/siakad/presensi/absensi/nim/1741727001/thnsem/20172/format/xml ') }}" class="btn btn-secondary btn-sm" target="_blank">
+                                        <a href="http://tugasakhir:p0l1nema@api.polinema.ac.id/siakad/presensi/absensi/nim/{{ $user->nim }}/thnsem/{{ 20170 + $i }}/format/xml" class="btn btn-secondary btn-sm" target="_blank">
                                             Detail
                                         </a>
                                     </td>
