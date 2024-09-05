@@ -4,15 +4,60 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Presensi;
 
 class PresensiController extends Controller
 {
+    public function index()
+    {
+        // Ambil data user yang sedang login
+        $user = Auth::user();
+
+        // Ambil profil pengguna jika ada relasi
+        $profile = $user->profile ?? null;
+
+        // Ambil data presensi dari database
+        $presensiData = Presensi::all(); // Mengambil semua data presensi
+
+        // Perhitungan Data Kompen Sistem
+        $totalAbsensi = $presensiData->sum('JamAlpa'); // Misalnya, jam alfa dianggap sebagai absensi
+        $dataKompenSistem = $this->calculateKompenSistem($totalAbsensi);
+
+        return view('presensi.index', [
+            'presensi' => [
+                'data' => $presensiData, // Data diambil dari database
+            ],
+            'user' => $user,
+            'profile' => $profile,
+            'kompenSistem' => $dataKompenSistem,
+            'totalAbsensi' => $totalAbsensi,
+        ]);
+    }
+
+    // Fungsi untuk menghitung Data Kompen Sistem
+    private function calculateKompenSistem($totalAbsensi)
+    {
+        $kompenData = [];
+        $currentValue = 2;
+
+        for ($i = 1; $i <= $totalAbsensi; $i++) {
+            $kompenData[] = [
+                'kompen' => $currentValue,
+                'result' => $currentValue * $i,
+            ];
+            $currentValue *= 2; // Kelipatan dua
+        }
+
+        return $kompenData;
+    }
+
     public function fetchPresensi()
     {
         $client = new Client();
 
         // URL dan credential untuk otentikasi dasar
-        $url = 'http://api.polinema.ac.id/siakad/presensi/absensi/nim/1741727001/thnsem/20172/format/xml';
+        $url = 'http://api.polinema.ac.id/siakad/presensi/absensi/nim/2141720260/thnsem/20172/format/xml';
         $username = 'tugasakhir';
         $password = 'p0l1nema';
 
@@ -33,28 +78,54 @@ class PresensiController extends Controller
             $json = json_encode($xml);
             $data = json_decode($json, true);
 
-            // Debugging data yang diterima
-            dd($data); // Ini akan menghentikan eksekusi dan menampilkan data
-
-            // Pastikan data terstruktur dengan benar
+            // Ambil data presensi
+            $presensiData = [];
             if (isset($data['record'])) {
                 $presensiData = is_array($data['record']) ? $data['record'] : [$data['record']];
-
-                // Kirim data ke view Blade
-                return view('presensi.index', [
-                    'presensi' => [
-                        'data' => $presensiData, // Pastikan data diubah menjadi array
-                    ]
-                ]);
-            } else {
-                // Jika tidak ada data, tampilkan pesan kesalahan
-                return view('presensi.index', ['presensi' => ['data' => []]]);
             }
+
+            // Simpan data presensi ke database
+            foreach ($presensiData as $presensi) {
+                Presensi::create([
+                    'nim' => $presensi['nim'],
+                    'nama' => $presensi['nama'],
+                    'JamAlpa' => $presensi['jam_alfa'],
+                    'MenitAlpa' => $presensi['menit_alfa'],
+                    'JamIjin' => $presensi['jam_ijin'],
+                    'MenitIjin' => $presensi['menit_ijin'],
+                    'JamSakit' => $presensi['jam_sakit'],
+                    'MenitSakit' => $presensi['menit_sakit'],
+                ]);
+            }
+
+            // Redirect kembali ke halaman index
+            return redirect()->route('presensi.index');
+
         } catch (\Exception $e) {
             // Menangani error jika terjadi
             return view('presensi.index', ['error' => $e->getMessage()]);
         }
     }
+
+    public function store(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'nim' => 'required',
+            'nama' => 'required',
+            'JamAlpa' => 'required|numeric',
+            'MenitAlpa' => 'required|numeric',
+            'JamIjin' => 'required|numeric',
+            'MenitIjin' => 'required|numeric',
+            'JamSakit' => 'required|numeric',
+            'MenitSakit' => 'required|numeric',
+        ]);
+
+        // Simpan data ke database
+        Presensi::create($request->all());
+
+        // Redirect kembali ke halaman index dengan pesan sukses
+        return redirect()->route('presensi.index')->with('success', 'Data presensi berhasil disimpan.');
+    }
 }
 
-?>
