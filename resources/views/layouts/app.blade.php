@@ -139,7 +139,7 @@
                         <a href="{{ route('assignments.index') }}"
                             class="list-group-item list-group-item-action bg-dark text-white">Tugas</a> 
                         <a href="{{ route('tasktransactions.index') }}"
-                            class="list-group-item list-group-item-action bg-dark text-white">Transaksi Tugas</a>  
+                            class="list-group-item list-group-item-action bg-dark text-white">Transaksi Tugas</a>
                             
                     </div>
                 </div>
