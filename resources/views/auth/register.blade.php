@@ -13,58 +13,72 @@
                     <!-- Form Register -->
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                        
+
                         <!-- Name Field -->
                         <div class="form-group mb-4">
                             <label for="name" class="form-label">{{ __('Name') }}</label>
-                            <input id="name" type="text" 
-                                   class="form-control @error('name') is-invalid @enderror" 
-                                   name="name" value="{{ old('name') }}" 
-                                   required autocomplete="name" autofocus
-                                   style="background-color: #3a3a3a; color: #ffffff;">
+                            <input id="name" type="text"
+                                class="form-control @error('name') is-invalid @enderror"
+                                name="name" value="{{ old('name') }}"
+                                required autocomplete="name" autofocus
+                                style="background-color: #3a3a3a; color: #ffffff;">
                             @error('name')
-                                <span class="invalid-feedback" role="alert" style="color: #ff4444;">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert" style="color: #ff4444;">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
-                        
+
+                        <div class="form-group mb-4">
+                            <label for="nim" class="form-label">{{ __('Nim') }}</label>
+                            <input id="nim" type="text"
+                                class="form-control @error('nim') is-invalid @enderror"
+                                name="nim" value="{{ old('nim') }}"
+                                required autocomplete="name" autofocus
+                                style="background-color: #3a3a3a; color: #ffffff;">
+                            @error('nim')
+                            <span class="invalid-feedback" role="alert" style="color: #ff4444;">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
                         <!-- Email Field -->
                         <div class="form-group mb-4">
                             <label for="email" class="form-label">{{ __('Email Address') }}</label>
-                            <input id="email" type="email" 
-                                   class="form-control @error('email') is-invalid @enderror" 
-                                   name="email" value="{{ old('email') }}" 
-                                   required autocomplete="email"
-                                   style="background-color: #3a3a3a; color: #ffffff;">
+                            <input id="email" type="email"
+                                class="form-control @error('email') is-invalid @enderror"
+                                name="email" value="{{ old('email') }}"
+                                required autocomplete="email"
+                                style="background-color: #3a3a3a; color: #ffffff;">
                             @error('email')
-                                <span class="invalid-feedback" role="alert" style="color: #ff4444;">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert" style="color: #ff4444;">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
-                        
+
                         <!-- Password Field -->
                         <div class="form-group mb-4">
                             <label for="password" class="form-label">{{ __('Password') }}</label>
-                            <input id="password" type="password" 
-                                   class="form-control @error('password') is-invalid @enderror" 
-                                   name="password" required autocomplete="new-password"
-                                   style="background-color: #3a3a3a; color: #ffffff;">
+                            <input id="password" type="password"
+                                class="form-control @error('password') is-invalid @enderror"
+                                name="password" required autocomplete="new-password"
+                                style="background-color: #3a3a3a; color: #ffffff;">
                             @error('password')
-                                <span class="invalid-feedback" role="alert" style="color: #ff4444;">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback" role="alert" style="color: #ff4444;">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
-                        
+
                         <!-- Confirm Password Field -->
                         <div class="form-group mb-4">
                             <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
-                            <input id="password-confirm" type="password" 
-                                   class="form-control" name="password_confirmation" 
-                                   required autocomplete="new-password"
-                                   style="background-color: #3a3a3a; color: #ffffff;">
+                            <input id="password-confirm" type="password"
+                                class="form-control" name="password_confirmation"
+                                required autocomplete="new-password"
+                                style="background-color: #3a3a3a; color: #ffffff;">
                         </div>
 
                         <!-- Register Button -->
