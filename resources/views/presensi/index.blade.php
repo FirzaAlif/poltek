@@ -20,20 +20,32 @@
                         <tbody>
                             @for ($i = 1; $i <= 8; $i++)
                                 <tr>
-                                    <td>Semester {{ $i }}</td>
-                                    <td>
-                                        <!-- Generate the URL dynamically for each semester -->
-                                        <a href="http://tugasakhir:p0l1nema@api.polinema.ac.id/siakad/presensi/absensi/nim/{{ $user->nim }}/thnsem/{{ 20170 + $i }}/format/xml" class="btn btn-secondary btn-sm" target="_blank">
-                                            Detail
-                                        </a>
-                                    </td>
+                                <td>Semester {{ $i }}</td>
+                                <td>
+                                    @php
+                                    // Set tahun awal
+                                    $tahun_awal = 20171;
+
+                                    // Set perubahan tahun setiap 2 semesters
+                                    $tahun = $tahun_awal + intdiv($i - 1, 2) * 10;
+
+                                    // Jika semester adalah semester ganjil (1, 3, 5, 7), tambahkan 1 untuk mendapatkan 20172, 20182, dst.
+                                    if (($i - 1) % 2 == 1) {
+                                    $tahun += 1;
+                                    }
+                                    @endphp
+                                    <!-- Generate the URL dynamically for each semester -->
+                                    <a href="http://tugasakhir:p0l1nema@api.polinema.ac.id/siakad/presensi/absensi/nim/{{ $user->nim }}/thnsem/{{ $tahun }}/format/xml" class="btn btn-secondary btn-sm" target="_blank">
+                                        Detail
+                                    </a>
+                                </td>
                                 </tr>
-                            @endfor
+                                @endfor
                         </tbody>
                     </table>
-                    <p><strong>Nama:</strong> {{ $profile ? $profile->name : '-' }}</p>
-                    <p><strong>Jalur Masuk:</strong> {{ $profile ? $profile->jalur_masuk : '-' }}</p>
-                    <p><strong>Angkatan:</strong> {{ $profile ? $profile->angkatan : '-' }}</p>
+                    <p><strong>Nama:</strong> {{ $user ? $user->name : '-' }}</p>
+                    <p><strong>Nim:</strong> {{ $user ? $user->nim : '-' }}</p>
+                    <p><strong>Email:</strong> {{ $user ? $user->email : '-' }}</p>
                 </div>
             </div>
         </div>
@@ -54,10 +66,10 @@
                         </thead>
                         <tbody>
                             @foreach ($kompenSistem as $item)
-                                <tr>
-                                    <td>{{ $item['kompen'] }} x {{ $loop->iteration }} = {{ $item['result'] }}</td>
-                                    <td>{{ $item['result'] }}</td>
-                                </tr>
+                            <tr>
+                                <td>{{ $item['kompen'] }} x {{ $loop->iteration }} = {{ $item['result'] }}</td>
+                                <td>{{ $item['result'] }}</td>
+                            </tr>
                             @endforeach
                             <tr>
                                 <td><strong>Total</strong></td>
@@ -77,5 +89,39 @@
             </div>
         </div>
     </div>
+
+    
+    
+    
+    @if(isset($data) && isset($data->status) && $data->status == 'data valid')
+    <table>
+        <thead>
+            <tr>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>Jam Alpha</th>
+                <th>Menit Alpha</th>
+                <th>Jam Ijin</th>
+                <th>Menit Ijin</th>
+                <th>Jam Sakit</th>
+                <th>Menit Sakit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ $data->data->nim }}</td>
+                <td>{{ $data->data->nama }}</td>
+                <td>{{ $data->data->JamAlpa }}</td>
+                <td>{{ $data->data->MenitAlpa }}</td>
+                <td>{{ $data->data->JamIjin }}</td>
+                <td>{{ $data->data->MenitIjin }}</td>
+                <td>{{ $data->data->JamSakit }}</td>
+                <td>{{ $data->data->MenitSakit }}</td>
+            </tr>
+        </tbody>
+    </table>
+    @else
+    <p>Data presensi tidak ditemukan atau tidak valid.</p>
+    @endif
 </div>
 @endsection

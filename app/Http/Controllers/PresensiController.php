@@ -14,6 +14,8 @@ class PresensiController extends Controller
         // Ambil data user yang sedang login
         $user = Auth::user();
 
+        $nim = $user->nim;
+
         // Ambil profil pengguna jika ada relasi
         $profile = $user->profile ?? null;
 
@@ -55,9 +57,10 @@ class PresensiController extends Controller
     public function fetchPresensi()
     {
         $client = new Client();
+        $user = Auth::user()->nim;
 
         // URL dan credential untuk otentikasi dasar
-        $url = 'http://api.polinema.ac.id/siakad/presensi/absensi/nim/2141720260/thnsem/20172/format/xml';
+        $url = 'http://api.polinema.ac.id/siakad/presensi/absensi/nim/{{$user}}/thnsem/20172/format/xml';
         $username = 'tugasakhir';
         $password = 'p0l1nema';
 
